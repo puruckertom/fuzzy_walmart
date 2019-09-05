@@ -43,7 +43,9 @@ master=pd.DataFrame()
 for brand in brands_unique:
     # print(brands_unique.index(brand))
     brands_unique=list(set(brands_copy))
+    #removing the exact match
     brands_unique.remove(brand)
+    #top 5 matches that are not exact
     token_sort_top_5=process.extract(brand, brands_unique, limit=5, scorer=fuzz.token_sort_ratio)
     token_set_top_5=process.extract(brand, brands_unique, limit=5, scorer=fuzz.token_set_ratio)
     partial_top_5=process.extract(brand, brands_unique, limit=5, scorer=fuzz.partial_ratio)
